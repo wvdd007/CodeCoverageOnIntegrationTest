@@ -4,7 +4,7 @@ ls /root/.dotnet/tools
 echo "bin -------------------------------"
 ls /bin
 
-dotnet dev-certs https
+# trust developer certificates
 dotnet dev-certs https --trust
 
 echo "cd -------------------------------"

@@ -40,7 +40,8 @@ namespace SampleApi.Controllers
             .ToArray();
         }
 
-        [HttpPost]
+        [HttpGet]
+        [Route("/stop")]
         public void Stop()
         {
            _applicationLifetime.StopApplication();

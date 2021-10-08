@@ -50,7 +50,7 @@ namespace TestSampleApi
             {
                 BaseAddress = new Uri("http://localhost/")
             };
-            await client.PostAsync("weatherforecast", new StringContent(""));
+            await client.PostAsync("stop", new StringContent(""));
         }
     }
 
