@@ -1,0 +1,12 @@
+﻿FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
+ARG version=1.0.0
+
+# Copy csproj and restore as distinct layers
+COPY . /src/SampleApi
+COPY .. /src/SampleApi.Contracts 
+COPY ../CodeCoverageOnIntegrationTest.sln /src/CodeCoverageOnIntegrationTest.sln 
+RUN ls -la /src/*
+
+# restore for all projects
+RUN dotnet restore /src/CodeCoverageOnIntegrationTest.sln
+
