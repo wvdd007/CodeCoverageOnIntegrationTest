@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using SampleApi.Contracts;
 using Xunit;
 using Xunit.Abstractions;
-// Set the orderer
-[assembly: TestCollectionOrderer("TestSampleApi.DisplayNameOrderer", "TestSampleApi")]
 
 // Need to turn off test parallelization so we can validate the run order
 [assembly: CollectionBehavior(DisableTestParallelization = true)]
@@ -43,22 +41,7 @@ namespace TestSampleApi
             }
         }
 
-        [Fact]
-        public async Task Test2()
-        {
-            var client = new HttpClient
-            {
-                BaseAddress = new Uri("http://localhost/")
-            };
-            await client.PostAsync("stop", new StringContent(""));
-        }
+      
     }
 
-    public class DisplayNameOrderer : ITestCollectionOrderer
-    {
-        public IEnumerable<ITestCollection> OrderTestCollections(IEnumerable<ITestCollection> testCollections)
-        {
-            return testCollections.OrderBy(collection => collection.DisplayName);
-        }
-    }
 }

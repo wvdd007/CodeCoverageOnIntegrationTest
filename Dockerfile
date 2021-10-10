@@ -1,5 +1,4 @@
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
-#ARG version=1.0.0
 WORKDIR /app
 EXPOSE 5000 5001
 ARG BUILD_CONFIGURATION=Debug

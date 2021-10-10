@@ -17,13 +17,10 @@ namespace SampleApi.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
-        private readonly Microsoft.Extensions.Hosting.IHostApplicationLifetime _applicationLifetime;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,
-            Microsoft.Extensions.Hosting.IHostApplicationLifetime applicationLifetime)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger)
         {
             _logger = logger;
-            _applicationLifetime = applicationLifetime;
         }
 
         [HttpGet]
@@ -40,11 +37,6 @@ namespace SampleApi.Controllers
             .ToArray();
         }
 
-        [HttpGet]
-        [Route("/stop")]
-        public void Stop()
-        {
-           _applicationLifetime.StopApplication();
-        }
+        
     }
 }

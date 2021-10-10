@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coverage version="1">
+  <file path="/app/SampleApi/Controllers/StopController.cs">
+    <lineToCover lineNumber="10" covered="true" />
+    <lineToCover lineNumber="11" covered="true" />
+    <lineToCover lineNumber="12" covered="true" />
+    <lineToCover lineNumber="13" covered="true" />
+    <lineToCover lineNumber="18" covered="true" />
+    <lineToCover lineNumber="19" covered="true" />
+    <lineToCover lineNumber="20" covered="true" />
+  </file>
+  <file path="/app/SampleApi/Controllers/WeatherForecastController.cs">
+    <lineToCover lineNumber="14" covered="false" />
+    <lineToCover lineNumber="15" covered="false" />
+    <lineToCover lineNumber="16" covered="false" />
+    <lineToCover lineNumber="17" covered="false" />
+    <lineToCover lineNumber="21" covered="false" />
+    <lineToCover lineNumber="22" covered="false" />
+    <lineToCover lineNumber="23" covered="false" />
+    <lineToCover lineNumber="24" covered="false" />
+    <lineToCover lineNumber="28" covered="false" />
+    <lineToCover lineNumber="29" covered="false" />
+    <lineToCover lineNumber="30" covered="false" />
+    <lineToCover lineNumber="31" covered="false" />
+    <lineToCover lineNumber="32" covered="false" />
+    <lineToCover lineNumber="33" covered="false" />
+    <lineToCover lineNumber="34" covered="false" />
+    <lineToCover lineNumber="35" covered="false" />
+    <lineToCover lineNumber="36" covered="false" />
+    <lineToCover lineNumber="37" covered="false" />
+    <lineToCover lineNumber="38" covered="false" />
+  </file>
+  <file path="/app/SampleApi/Program.cs">
+    <lineToCover lineNumber="15" covered="true" />
+    <lineToCover lineNumber="16" covered="true" />
+    <lineToCover lineNumber="17" covered="true" />
+    <lineToCover lineNumber="20" covered="true" />
+    <lineToCover lineNumber="21" covered="true" />
+    <lineToCover lineNumber="22" covered="true" />
+    <lineToCover lineNumber="23" covered="true" />
+    <lineToCover lineNumber="24" covered="true" />
+  </file>
+  <file path="/app/SampleApi/Startup.cs">
+    <lineToCover lineNumber="17" covered="true" />
+    <lineToCover lineNumber="18" covered="true" />
+    <lineToCover lineNumber="19" covered="true" />
+    <lineToCover lineNumber="20" covered="true" />
+    <lineToCover lineNumber="22" covered="false" />
+    <lineToCover lineNumber="26" covered="true" />
+    <lineToCover lineNumber="27" covered="true" />
+    <lineToCover lineNumber="28" covered="true" />
+    <lineToCover lineNumber="32" covered="true" />
+    <lineToCover lineNumber="33" covered="true" />
+    <lineToCover lineNumber="34" covered="true" />
+    <lineToCover lineNumber="35" covered="true" />
+    <lineToCover lineNumber="36" covered="true" />
+    <lineToCover lineNumber="38" covered="true" />
+    <lineToCover lineNumber="42" covered="true" />
+    <lineToCover lineNumber="43" covered="true" />
+    <lineToCover lineNumber="44" covered="true" />
+    <lineToCover lineNumber="45" covered="true" />
+    <lineToCover lineNumber="46" covered="true" />
+  </file>
+  <file path="/app/SampleApi.Contracts/WeatherForecast.cs">
+    <lineToCover lineNumber="9" covered="false" />
+    <lineToCover lineNumber="12" covered="false" />
+    <lineToCover lineNumber="16" covered="false" />
+  </file>
+</coverage>

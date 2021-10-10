@@ -12,11 +12,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JetBrains.dotCover.CommandLineTools" Version="2021.2.1">
+    <!--<PackageReference Include="JetBrains.dotCover.CommandLineTools" Version="2021.2.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="ReportGenerator" Version="4.8.13" />
+    </PackageReference>-->
+    <PackageReference Include="ReportGenerator" Version="4.8.13" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'"/>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root CoveredStatements="32" TotalStatements="50" CoveragePercent="64" ReportType="DetailedXml" DotCoverVersion="2021.2.1">
+  <FileIndices>
+    <File Index="1" Name="/app/SampleApi/Program.cs" ChecksumAlgorithm="SHA256" Checksum="248D33EEA883CA5CDEED73C0AC579AE8AC72495F43346588F13F97E7E39823D7" />
+    <File Index="2" Name="/app/SampleApi/Startup.cs" ChecksumAlgorithm="SHA256" Checksum="011E2CCD4ADC10320EF107578AFA34C0670DB684C711CF478B498D039118EE65" />
+    <File Index="3" Name="/app/SampleApi/Controllers/StopController.cs" ChecksumAlgorithm="SHA256" Checksum="860932DBC6D29D098377C159337BC6FE77A5C4D424A0C090AFFF944FAD182608" />
+    <File Index="4" Name="/app/SampleApi/Controllers/WeatherForecastController.cs" ChecksumAlgorithm="SHA256" Checksum="B5C2E1526995CFEFC75D02B835094DEA9922478BBBD507E605FA95AFFCE3279F" />
+    <File Index="5" Name="/app/SampleApi.Contracts/WeatherForecast.cs" ChecksumAlgorithm="SHA256" Checksum="86E80F8D88D0ADF857C18EA86CE899683D8D94D2384F16D8949D5415C3331BD0" />
+  </FileIndices>
+  <Assembly Name="SampleApi" CoveredStatements="32" TotalStatements="44" CoveragePercent="73">
+    <Namespace Name="SampleApi" CoveredStatements="25" TotalStatements="26" CoveragePercent="96">
+      <Type Name="Program" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
+        <Type Name="&lt;&gt;c" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Method Name="&lt;CreateHostBuilder&gt;b__1_0(Microsoft.AspNetCore.Hosting.IWebHostBuilder):System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+            <Statement FileIndex="1" Line="22" Column="17" EndLine="22" EndColumn="18" Covered="True" />
+            <Statement FileIndex="1" Line="23" Column="21" EndLine="23" EndColumn="54" Covered="True" />
+            <Statement FileIndex="1" Line="24" Column="17" EndLine="24" EndColumn="18" Covered="True" />
+          </Method>
+        </Type>
+        <Method Name="CreateHostBuilder(System.String[]):Microsoft.Extensions.Hosting.IHostBuilder" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Statement FileIndex="1" Line="20" Column="13" EndLine="24" EndColumn="19" Covered="True" />
+        </Method>
+        <Method Name="Main(System.String[]):System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="1" Line="15" Column="9" EndLine="15" EndColumn="10" Covered="True" />
+          <Statement FileIndex="1" Line="16" Column="13" EndLine="16" EndColumn="51" Covered="True" />
+          <Statement FileIndex="1" Line="17" Column="9" EndLine="17" EndColumn="10" Covered="True" />
+        </Method>
+      </Type>
+      <Type Name="Startup" CoveredStatements="18" TotalStatements="19" CoveragePercent="95">
+        <Type Name="&lt;&gt;c" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Method Name="&lt;Configure&gt;b__5_0(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder):System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+            <Statement FileIndex="2" Line="43" Column="13" EndLine="43" EndColumn="14" Covered="True" />
+            <Statement FileIndex="2" Line="44" Column="17" EndLine="44" EndColumn="44" Covered="True" />
+            <Statement FileIndex="2" Line="45" Column="13" EndLine="45" EndColumn="14" Covered="True" />
+          </Method>
+        </Type>
+        <Method Name=".ctor(Microsoft.Extensions.Configuration.IConfiguration):System.Void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <Statement FileIndex="2" Line="17" Column="9" EndLine="17" EndColumn="53" Covered="True" />
+          <Statement FileIndex="2" Line="18" Column="9" EndLine="18" EndColumn="10" Covered="True" />
+          <Statement FileIndex="2" Line="19" Column="13" EndLine="19" EndColumn="43" Covered="True" />
+          <Statement FileIndex="2" Line="20" Column="9" EndLine="20" EndColumn="10" Covered="True" />
+        </Method>
+        <Method Name="Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment):System.Void" CoveredStatements="8" TotalStatements="8" CoveragePercent="100">
+          <Statement FileIndex="2" Line="32" Column="9" EndLine="32" EndColumn="10" Covered="True" />
+          <Statement FileIndex="2" Line="33" Column="13" EndLine="33" EndColumn="37" Covered="True" />
+          <Statement FileIndex="2" Line="34" Column="13" EndLine="34" EndColumn="14" Covered="True" />
+          <Statement FileIndex="2" Line="35" Column="17" EndLine="35" EndColumn="49" Covered="True" />
+          <Statement FileIndex="2" Line="36" Column="13" EndLine="36" EndColumn="14" Covered="True" />
+          <Statement FileIndex="2" Line="38" Column="13" EndLine="38" EndColumn="30" Covered="True" />
+          <Statement FileIndex="2" Line="42" Column="13" EndLine="45" EndColumn="16" Covered="True" />
+          <Statement FileIndex="2" Line="46" Column="9" EndLine="46" EndColumn="10" Covered="True" />
+        </Method>
+        <Method Name="ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection):System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="2" Line="26" Column="9" EndLine="26" EndColumn="10" Covered="True" />
+          <Statement FileIndex="2" Line="27" Column="13" EndLine="27" EndColumn="39" Covered="True" />
+          <Statement FileIndex="2" Line="28" Column="9" EndLine="28" EndColumn="10" Covered="True" />
+        </Method>
+        <Method Name="get_Configuration():Microsoft.Extensions.Configuration.IConfiguration" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="2" Line="22" Column="47" EndLine="22" EndColumn="51" Covered="False" />
+        </Method>
+      </Type>
+    </Namespace>
+    <Namespace Name="SampleApi.Controllers" CoveredStatements="7" TotalStatements="18" CoveragePercent="39">
+      <Type Name="StopController" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
+        <Method Name=".ctor(Microsoft.Extensions.Hosting.IHostApplicationLifetime):System.Void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
+          <Statement FileIndex="3" Line="10" Column="9" EndLine="10" EndColumn="105" Covered="True" />
+          <Statement FileIndex="3" Line="11" Column="9" EndLine="11" EndColumn="10" Covered="True" />
+          <Statement FileIndex="3" Line="12" Column="13" EndLine="12" EndColumn="56" Covered="True" />
+          <Statement FileIndex="3" Line="13" Column="9" EndLine="13" EndColumn="10" Covered="True" />
+        </Method>
+        <Method Name="Stop():System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="3" Line="18" Column="9" EndLine="18" EndColumn="10" Covered="True" />
+          <Statement FileIndex="3" Line="19" Column="13" EndLine="19" EndColumn="52" Covered="True" />
+          <Statement FileIndex="3" Line="20" Column="9" EndLine="20" EndColumn="10" Covered="True" />
+        </Method>
+      </Type>
+      <Type Name="WeatherForecastController" CoveredStatements="0" TotalStatements="11" CoveragePercent="0">
+        <Type Name="&lt;&gt;c__DisplayClass3_0" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Method Name="&lt;Get&gt;b__0(System.Int32):SampleApi.Contracts.WeatherForecast" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+            <Statement FileIndex="4" Line="31" Column="59" EndLine="36" EndColumn="14" Covered="False" />
+          </Method>
+        </Type>
+        <Method Name=".cctor():System.Void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="4" Line="14" Column="9" EndLine="17" EndColumn="11" Covered="False" />
+        </Method>
+        <Method Name=".ctor(Microsoft.Extensions.Logging.ILogger&lt;SampleApi.Controllers.WeatherForecastController&gt;):System.Void" CoveredStatements="0" TotalStatements="4" CoveragePercent="0">
+          <Statement FileIndex="4" Line="21" Column="9" EndLine="21" EndColumn="84" Covered="False" />
+          <Statement FileIndex="4" Line="22" Column="9" EndLine="22" EndColumn="10" Covered="False" />
+          <Statement FileIndex="4" Line="23" Column="13" EndLine="23" EndColumn="30" Covered="False" />
+          <Statement FileIndex="4" Line="24" Column="9" EndLine="24" EndColumn="10" Covered="False" />
+        </Method>
+        <Method Name="Get():System.Collections.Generic.IEnumerable&lt;SampleApi.Contracts.WeatherForecast&gt;" CoveredStatements="0" TotalStatements="5" CoveragePercent="0">
+          <Statement FileIndex="4" Line="28" Column="9" EndLine="28" EndColumn="10" Covered="False" />
+          <Statement FileIndex="4" Line="29" Column="13" EndLine="29" EndColumn="36" Covered="False" />
+          <Statement FileIndex="4" Line="30" Column="13" EndLine="30" EndColumn="82" Covered="False" />
+          <Statement FileIndex="4" Line="31" Column="13" EndLine="37" EndColumn="24" Covered="False" />
+          <Statement FileIndex="4" Line="38" Column="9" EndLine="38" EndColumn="10" Covered="False" />
+        </Method>
+      </Type>
+    </Namespace>
+  </Assembly>
+  <Assembly Name="SampleApi.Contracts" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
+    <Namespace Name="SampleApi.Contracts" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
+      <Type Name="WeatherForecast" CoveredStatements="0" TotalStatements="6" CoveragePercent="0">
+        <Method Name="get_Date():System.DateTime" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="9" Column="32" EndLine="9" EndColumn="36" Covered="False" />
+        </Method>
+        <Method Name="get_Summary():System.String" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="16" Column="33" EndLine="16" EndColumn="37" Covered="False" />
+        </Method>
+        <Method Name="get_TemperatureC():System.Int32" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="12" Column="35" EndLine="12" EndColumn="39" Covered="False" />
+        </Method>
+        <Method Name="set_Date(System.DateTime):System.Void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="9" Column="37" EndLine="9" EndColumn="41" Covered="False" />
+        </Method>
+        <Method Name="set_Summary(System.String):System.Void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="16" Column="38" EndLine="16" EndColumn="42" Covered="False" />
+        </Method>
+        <Method Name="set_TemperatureC(System.Int32):System.Void" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
+          <Statement FileIndex="5" Line="12" Column="40" EndLine="12" EndColumn="44" Covered="False" />
+        </Method>
+      </Type>
+    </Namespace>
+  </Assembly>
+</Root>
