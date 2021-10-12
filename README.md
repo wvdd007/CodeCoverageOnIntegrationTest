@@ -50,19 +50,19 @@ I had a look at the visual studio profiling tools (which can also do code covera
 I also had a very diagonal look at coverlet.  But i skipped that for no other reason than that I had the impression that this was more about "classical" unit test coverage.  It's probably possible but I didn't see an easy way to collect coverage from something else than running unit tests.
 So I finally decided to use Jetbrains DotCover for the task.  I use this tool myself (integrated in Visual Studio) and I generally like the Jetbrains tools.  To run the tool is actually quite easy :
 
-``` bash
+``` sh
 dotnet tool install JetBrains.dotCover.GlobalTool -g
 ``` 
 
 Once you have done that, you can use the dotnet-dotcover command to run the code coverage.  Since this will be running inside a linux container, the command would look like this:
 
-``` bash
+``` sh
 /root/.dotnet/tools/dotnet-dotcover --dcReportType=DetailedXML SampleApi.dll
 ``` 
 
 ## Dockerfile
 So I created a docker file that wraps it all up: 
-``` docker
+``` Dockerfile
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
 WORKDIR /app
 EXPOSE 5000 5001
@@ -100,7 +100,7 @@ There are several points to notice :
 - the entrypoint is a ´bash´ script.  The reason is that we want to do multiple things : collect, reformat and publish.
 
 The script looks like this :
-``` bash
+``` sh
 # trust developer certificates
 dotnet dev-certs https --trust
 
@@ -124,10 +124,15 @@ cp dotCover.Output.xml /coverage/dotCover.Output.xml
 - We use the [reportgenerator](https://github.com/danielpalme/ReportGenerator) to convert the dotcover format to whatever we like.  Have a look at the tool to see the supported formats (Badges, Clover, Cobertura, CsvSummary, MarkdownSummary, Html, HtmlChart, HtmlInline, HtmlInline_AzurePipelines, htmlInline_AzurePipelines_Dark, HtmlSummary, JsonSummary, Latex, LatexSummary, lcov, MHtml, PngChart, SonarQube, TeamCitySummary, TextSummary, Xml, XmlSummary)
 
 I created the dockerfile on my local machine using :
-> docker build . -t coverage-demo
+
+``` sh
+docker build . -t coverage-demo
+```
 
 Then I could run it locally using something like :
-> docker run -it -p 80:80 coverage-demo
+``` sh
+docker run -it -p 80:80 coverage-demo
+```
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633868864349/LoaoXYyg4.png)
 
@@ -169,7 +174,7 @@ I also marked my integration tests with a xUnit Trait to allow running only the 
 That allows me to run these tests with:
 
 ``` powershell
- dotnet test --filter TestType=IntegrationTests
+dotnet test --filter TestType=IntegrationTests
 
 ``` 
 
@@ -210,7 +215,7 @@ namespace SampleApi.Controllers
 
 
 Then all we need to do to stop the code coverage collection is call something like :
-``` bash
+``` sh
 curl http:// localhost/stop
 ```
 
@@ -218,7 +223,7 @@ This should be called after our integration tests have run.  It will then cause 
 
 # Step4 : collect the data from the code coverage into some format your reporting tool likes
 Note that inside or shell script we have the following lines :
-``` bash
+``` sh
 # use the reportgenerator tool to convert it to any format you like.  In this case we convert to SonarQube format.
 # again we place the output in the "coverage" volume
 /root/.dotnet/tools/reportgenerator -reporttypes:TeamCitySummary -reports:dotCover.Output.xml -targetdir:/coverage
