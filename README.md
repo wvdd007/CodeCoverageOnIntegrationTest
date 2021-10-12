@@ -23,7 +23,7 @@ So the problem boils down to these things :
 I started by creating a standard .net REST service.  The service is not important for this purpose so I just took the standard "weatherforecast" service, that comes out of the box when you create a new one in Visual studio.
 You need to make some small tweaks to your .csproj file of the service and anything you want covered. 
 
-``` 
+``` xml
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
@@ -35,7 +35,7 @@ You need to make some small tweaks to your .csproj file of the service and anyth
 ``` 
 
 We also make sure out script is deployed to the output directory (there are multiple ways to do this but we just put it in the cproj file)
-``` 
+``` xml
   <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <None Update="run.sh">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -50,19 +50,19 @@ I had a look at the visual studio profiling tools (which can also do code covera
 I also had a very diagonal look at coverlet.  But i skipped that for no other reason than that I had the impression that this was more about "classical" unit test coverage.  It's probably possible but I didn't see an easy way to collect coverage from something else than running unit tests.
 So I finally decided to use Jetbrains DotCover for the task.  I use this tool myself (integrated in Visual Studio) and I generally like the Jetbrains tools.  To run the tool is actually quite easy :
 
-``` 
+``` bash
 dotnet tool install JetBrains.dotCover.GlobalTool -g
 ``` 
 
 Once you have done that, you can use the dotnet-dotcover command to run the code coverage.  Since this will be running inside a linux container, the command would look like this:
 
-``` 
+``` bash
 /root/.dotnet/tools/dotnet-dotcover --dcReportType=DetailedXML SampleApi.dll
 ``` 
 
 ## Dockerfile
 So I created a docker file that wraps it all up: 
-``` 
+``` docker
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build-env
 WORKDIR /app
 EXPOSE 5000 5001
@@ -100,7 +100,7 @@ There are several points to notice :
 - the entrypoint is a ´bash´ script.  The reason is that we want to do multiple things : collect, reformat and publish.
 
 The script looks like this :
-``` 
+``` bash
 # trust developer certificates
 dotnet dev-certs https --trust
 
@@ -136,7 +136,7 @@ Of course you could also deploy it in a kubernetes cluster or somewhere else.  T
 
 # Step2: run your integration tests against the container
 Then we need some integration tests
-``` 
+``` c#
  [Fact()]
         public async Task Test1()
         {
@@ -162,13 +162,13 @@ You can then run your integration tests from your local machine with any test ru
 
 I also marked my integration tests with a xUnit Trait to allow running only the integration tests when needed.
 
-``` 
+``` c#
 [assembly: AssemblyTrait("TestType","IntegrationTests")]
 ``` 
 
 That allows me to run these tests with:
 
-``` 
+``` powershell
  dotnet test --filter TestType=IntegrationTests
 
 ``` 
@@ -180,7 +180,7 @@ Since these tests will actually call the service in the container (the SUT), the
 
 # Step3 : stop the service gracefully
 There is still one small but annoying problem.  After our integration tests have been done, the service is still running.  After all, that is what services are designed to do : they run forever.   For code coverage to be properly collected, it is important that we do a clean  shutdown of the service.  Maybe there are better ways to do this but here is what I came up with.  A separated controller on the api that will stop the application when called.  Needless to say, you want this to be only available in the configuration used for these tests (hence the ´#ifdef´ statements):
-``` 
+``` c#
 #if DEBUG
 using Microsoft.AspNetCore.Mvc;
 
@@ -210,13 +210,15 @@ namespace SampleApi.Controllers
 
 
 Then all we need to do to stop the code coverage collection is call something like :
-> curl http:// localhost/stop
+``` bash
+curl http:// localhost/stop
+```
 
 This should be called after our integration tests have run.  It will then cause the dotcover process in the container to stop and the rest of the ´bash´ script will be executed.
 
 # Step4 : collect the data from the code coverage into some format your reporting tool likes
 Note that inside or shell script we have the following lines :
-``` 
+``` bash
 # use the reportgenerator tool to convert it to any format you like.  In this case we convert to SonarQube format.
 # again we place the output in the "coverage" volume
 /root/.dotnet/tools/reportgenerator -reporttypes:TeamCitySummary -reports:dotCover.Output.xml -targetdir:/coverage
@@ -226,13 +228,16 @@ Note that inside or shell script we have the following lines :
 
 The reportgenerator tool handles a lot of data formats  and it is up to you to choose which one you need.
 We have one last thing to do : make sure we get the reports out of the container.  To make sure the data survives the exit of our container, I save it into a docker volume (depending on your needs that might use a different driver than mine and save it p.e. in azure storage):
+``` powershell
+ docker volume create coverage
+ ```
 
-> docker volume create coverage
-
-> docker run -it -p 80:80  -v coverage:/coverage coverage-demo
+``` powershell
+docker run -it -p 80:80  -v coverage:/coverage coverage-demo
+ ```
 
 to get the coverage data later you can use the following [trick](https://stackoverflow.com/questions/37468788/what-is-the-right-way-to-add-data-to-an-existing-named-volume-in-docker) :
-``` 
+``` powershell
 docker run -v coverage:/coverage --name helper busybox true
 docker cp helper:/coverage coverage
 docker rm helper
