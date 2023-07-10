@@ -95,8 +95,8 @@ ENTRYPOINT ["/bin/bash", "/app/SampleApi/bin/Debug/netcoreapp3.1/run.sh"]
 
 There are several points to notice :
 - We use `mcr.microsoft.com/dotnet/sdk:3.1` as a base container.  This makes sure we have all the dotnet tools available in our container.  Since this container is really a throw away thing we don't care about the size of it.  There are probably some optimizations possible (ex if you have many such tests it could pay of to create a base container that contains all the project-agnostic stuff)
-- we copy the entire source directory into the dockerfile.  Agains, we don't really care about sizes.  Because of this we do a clean of the project before we build it.  This is all rather unimportant.
-- we install the ´JetBrains.dotCover.GlobalTool´ tool as a global tool to be able to call it in the container.
+- we copy the entire source directory into the dockerfile.  Again, we don't really care about sizes.  Because of this we do a clean of the project before we build it.  This is all rather unimportant.
+- we install the `JetBrains.dotCover.GlobalTool` tool as a global tool to be able to call it in the container.
 - the entrypoint is a ´bash´ script.  The reason is that we want to do multiple things : collect, reformat and publish.
 
 The script looks like this :
