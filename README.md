@@ -47,7 +47,7 @@ We also make sure our script is deployed to the output directory (there are mult
 ## Choosing a way to activate code coverage.
 Then I had to choose a tool to collect code coverage metrics.  There are several tools out there that can help you with it.  There is the "manual" way of doing it with tools like.  
 I had a look at the visual studio profiling tools (which can also do code coverage).  I actually got this working but it felt a bit complicated.  Also, the steps are (more or less):  Instrument the assemblies, start profiling (with code coverage mode), run the service, stop profiling. I felt it difficult to see when I was "done" because I probably had to wait for a process to die.
-I also had a very diagonal look at coverlet.  But i skipped that for no other reason than that I had the impression that this was more about "classical" unit test coverage.  It's probably possible but I didn't see an easy way to collect coverage from something else than running unit tests.
+I also had a very diagonal look at `coverlet`.  But i skipped that for no other reason than that I had the impression that this was more about "classical" unit test coverage.  It's probably possible but I didn't see an easy way to collect coverage from something else than running unit tests.
 So I finally decided to use Jetbrains DotCover for the task.  I use this tool myself (integrated in Visual Studio) and I generally like the Jetbrains tools.  To run the tool is actually quite easy :
 
 ``` sh
