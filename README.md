@@ -48,7 +48,7 @@ We also make sure our script is deployed to the output directory (there are mult
 Then I had to choose a tool to collect code coverage metrics.  There are several tools out there that can help you with it.  There is the "manual" way of doing it with tools like.  
 I had a look at the visual studio profiling tools (which can also do code coverage).  I actually got this working but it felt a bit complicated.  Also, the steps are (more or less):  Instrument the assemblies, start profiling (with code coverage mode), run the service, stop profiling. I felt it difficult to see when I was "done" because I probably had to wait for a process to die.
 I also had a very diagonal look at `coverlet`.  But i skipped that for no other reason than that I had the impression that this was more about "classical" unit test coverage.  It's probably possible but I didn't see an easy way to collect coverage from something else than running unit tests.
-So I finally decided to use Jetbrains DotCover for the task.  I use this tool myself (integrated in Visual Studio) and I generally like the Jetbrains tools.  To run the tool is actually quite easy :
+So I finally decided to use Jetbrains `DotCover` for the task.  I use this tool myself (integrated in Visual Studio) and I generally like the Jetbrains tools.  To run the tool is actually quite easy :
 
 ``` sh
 dotnet tool install JetBrains.dotCover.GlobalTool -g
@@ -94,7 +94,7 @@ ENTRYPOINT ["/bin/bash", "/app/SampleApi/bin/Debug/netcoreapp3.1/run.sh"]
 ``` 
 
 There are several points to notice :
-- We use ´mcr.microsoft.com/dotnet/sdk:3.1´ as a base container.  This makes sure we have all the dotnet tools available in our container.  Since this container is really a throw away thing we don't care about the size of it.  There are probably some optimizations possible (ex if you have many such tests it could pay of to create a base container that contains all the project-agnostic stuff)
+- We use `mcr.microsoft.com/dotnet/sdk:3.1` as a base container.  This makes sure we have all the dotnet tools available in our container.  Since this container is really a throw away thing we don't care about the size of it.  There are probably some optimizations possible (ex if you have many such tests it could pay of to create a base container that contains all the project-agnostic stuff)
 - we copy the entire source directory into the dockerfile.  Agains, we don't really care about sizes.  Because of this we do a clean of the project before we build it.  This is all rather unimportant.
 - we install the ´JetBrains.dotCover.GlobalTool´ tool as a global tool to be able to call it in the container.
 - the entrypoint is a ´bash´ script.  The reason is that we want to do multiple things : collect, reformat and publish.
