@@ -97,7 +97,7 @@ There are several points to notice :
 - We use `mcr.microsoft.com/dotnet/sdk:3.1` as a base container.  This makes sure we have all the dotnet tools available in our container.  Since this container is really a throw away thing we don't care about the size of it.  There are probably some optimizations possible (ex if you have many such tests it could pay of to create a base container that contains all the project-agnostic stuff)
 - we copy the entire source directory into the dockerfile.  Again, we don't really care about sizes.  Because of this we do a clean of the project before we build it.  This is all rather unimportant.
 - we install the `JetBrains.dotCover.GlobalTool` tool as a global tool to be able to call it in the container.
-- the entrypoint is a ´bash´ script.  The reason is that we want to do multiple things : collect, reformat and publish.
+- the entrypoint is a `bash` script.  The reason is that we want to do multiple things : collect, reformat and publish.
 
 The script looks like this :
 ``` sh
@@ -162,10 +162,10 @@ Then we need some integration tests
         }
 ``` 
 
-The uri we call from our test should of course match our running container.  I use localhost on my local machine but it you would deploy this in kubernetes, the address would probably be different.  Here we just do a simple api call but you can write it as simple or as complicated as you want.
+The uri we call from our test should of course match our running container.  I use `localhost` on my local machine but it you would deploy this in kubernetes, the address would probably be different.  Here we just do a simple api call but you can write it as simple or as complicated as you want.
 You can then run your integration tests from your local machine with any test runner you like.  You could also run them from your ci pipeline.  What matters is that the machine has access to your running container.
 
-I also marked my integration tests with a xUnit Trait to allow running only the integration tests when needed.
+I also marked my integration tests with a `xUnit` `Trait` to allow running only the integration tests when needed.
 
 ``` c#
 [assembly: AssemblyTrait("TestType","IntegrationTests")]
@@ -180,11 +180,11 @@ dotnet test --filter TestType=IntegrationTests
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1633869031979/RS7pjh-PN.png)
 
-Since these tests will actually call the service in the container (the SUT), they will cause dotcover to collect coverage data inside the container.
+Since these tests will actually call the service in the container (the SUT), they will cause `dotcover` to collect coverage data inside the container.
 
 
 # Step3 : stop the service gracefully
-There is still one small but annoying problem.  After our integration tests have been done, the service is still running.  After all, that is what services are designed to do : they run forever.   For code coverage to be properly collected, it is important that we do a clean  shutdown of the service.  Maybe there are better ways to do this but here is what I came up with.  A separated controller on the api that will stop the application when called.  Needless to say, you want this to be only available in the configuration used for these tests (hence the ´#ifdef´ statements):
+There is still one small but annoying problem.  After our integration tests have been done, the service is still running.  After all, that is what services are designed to do : they run forever.   For code coverage to be properly collected, it is important that we do a clean  shutdown of the service.  Maybe there are better ways to do this but here is what I came up with.  A separated controller on the api that will stop the application when called.  Needless to say, you want this to be only available in the configuration used for these tests (hence the `#ifdef` statements):
 ``` c#
 #if DEBUG
 using Microsoft.AspNetCore.Mvc;
@@ -211,7 +211,7 @@ namespace SampleApi.Controllers
 #endif
 ``` 
 
-´StopApplication´ is the clean way to stop a .net core application.
+`StopApplication` is the clean way to stop a .net core application.
 
 
 Then all we need to do to stop the code coverage collection is call something like :
@@ -219,7 +219,7 @@ Then all we need to do to stop the code coverage collection is call something li
 curl http:// localhost/stop
 ```
 
-This should be called after our integration tests have run.  It will then cause the dotcover process in the container to stop and the rest of the ´bash´ script will be executed.
+This should be called after our integration tests have run.  It will then cause the `dotcover` process in the container to stop and the rest of the `bash` script will be executed.
 
 # Step4 : collect the data from the code coverage into some format your reporting tool likes
 Note that inside or shell script we have the following lines :
@@ -231,7 +231,7 @@ Note that inside or shell script we have the following lines :
 /root/.dotnet/tools/reportgenerator -reporttypes:Html -reports:dotCover.Output.xml -targetdir:/coverage
 ``` 
 
-The reportgenerator tool handles a lot of data formats  and it is up to you to choose which one you need.
+The `reportgenerator` tool handles a lot of data formats  and it is up to you to choose which one you need.
 We have one last thing to do : make sure we get the reports out of the container.  To make sure the data survives the exit of our container, I save it into a docker volume (depending on your needs that might use a different driver than mine and save it p.e. in azure storage):
 ``` powershell
  docker volume create coverage
